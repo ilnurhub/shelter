@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Овчарка",
-      "description": "Большая и пушистая"
+      "description": "Большая  и пушистая"
     }
   },
   {
@@ -13,6 +13,22 @@
     "fields": {
       "name": "Колли",
       "description": "Красивая и снималась в кино"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 3,
+    "fields": {
+      "name": "Чихуахуа",
+      "description": "Концентрация силы"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 4,
+    "fields": {
+      "name": "Кинг Чарльз Спаниель",
+      "description": "Добрая"
     }
   },
   {
@@ -32,7 +48,37 @@
       "name": "Лесси",
       "category": 2,
       "photo": "",
-      "birth_day": null
+      "birth_day": "2021-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 3,
+    "fields": {
+      "name": "test",
+      "category": 2,
+      "photo": "",
+      "birth_day": "2021-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "dogs.parent",
+    "pk": 1,
+    "fields": {
+      "dog": 2,
+      "name": "Лесси Старшая",
+      "category": 2,
+      "birth_day": "2010-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "dogs.parent",
+    "pk": 2,
+    "fields": {
+      "dog": 2,
+      "name": "Лесси Папа Старший",
+      "category": 2,
+      "birth_day": "2010-01-01T00:00:00Z"
     }
   }
 ]
