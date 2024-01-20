@@ -1,4 +1,7 @@
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.cache import cache
 from django.forms import inlineformset_factory
 from django.http import Http404
 from django.shortcuts import render
@@ -7,6 +10,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, T
 
 from dogs.forms import DogForm, ParentForm
 from dogs.models import Category, Dog, Parent
+from dogs.services import get_categories_cache
 
 
 # Create your views here.
@@ -30,19 +34,21 @@ class IndexView(LoginRequiredMixin, TemplateView):
 #     return render(request, 'dogs/index.html', context)
 
 
-# def categories(request):
-#     context = {
-#         'object_list': Category.objects.all(),
-#         'title': 'Питомник - все наши породы'
-#     }
-#     return render(request, 'dogs/categories.html', context)
+@login_required
+def categories(request):
 
-
-class CategoryListView(LoginRequiredMixin, ListView):
-    model = Category
-    extra_context = {
-        'title': "Питомник - все наши породы"
+    context = {
+        'object_list': get_categories_cache(),
+        'title': 'Питомник - все наши породы'
     }
+    return render(request, 'dogs/category_list.html', context)
+
+
+# class CategoryListView(LoginRequiredMixin, ListView):
+#     model = Category
+#     extra_context = {
+#         'title': "Питомник - все наши породы"
+#     }
 
 
 # def category_dogs(request, pk):
